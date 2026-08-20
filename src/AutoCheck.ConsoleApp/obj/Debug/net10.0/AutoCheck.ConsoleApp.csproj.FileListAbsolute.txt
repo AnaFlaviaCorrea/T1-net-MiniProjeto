@@ -12,3 +12,4 @@ C:\Users\anafl\OneDrive\Área de Trabalho\Mini Projeto\autocheck-dotnet\src\Auto
 C:\Users\anafl\OneDrive\Área de Trabalho\Mini Projeto\autocheck-dotnet\src\AutoCheck.ConsoleApp\obj\Debug\net10.0\AutoCheck.ConsoleApp.pdb
 C:\Users\anafl\OneDrive\Área de Trabalho\Mini Projeto\autocheck-dotnet\src\AutoCheck.ConsoleApp\obj\Debug\net10.0\AutoCheck.ConsoleApp.genruntimeconfig.cache
 C:\Users\anafl\OneDrive\Área de Trabalho\Mini Projeto\autocheck-dotnet\src\AutoCheck.ConsoleApp\obj\Debug\net10.0\ref\AutoCheck.ConsoleApp.dll
+C:\Users\anafl\OneDrive\Área de Trabalho\Mini Projeto\autocheck-dotnet\src\AutoCheck.ConsoleApp\obj\Debug\net10.0\AutoCheck.ConsoleApp.sourcelink.json
