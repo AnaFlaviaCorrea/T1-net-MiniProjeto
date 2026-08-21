@@ -3,7 +3,7 @@ namespace AutoCheck.ConsoleApp.Models;
 public class ItemVistoria
 {
     public string Nome { get; set; }
-    public string Status { get; private set; }
+    public string Status { get; private set; } =string.Empty;
 
     public ItemVistoria(string nome, string status)
     {
