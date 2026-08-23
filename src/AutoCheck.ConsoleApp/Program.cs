@@ -1,31 +1,42 @@
 ﻿using AutoCheck.ConsoleApp.Models;
 
-Console.WriteLine("=================================================");
-Console.WriteLine("     AUTOCHECK .NET - TESTE DA CLASSE CARRO");
-Console.WriteLine("=================================================");
 Console.WriteLine();
+Console.WriteLine("==============================================");
+Console.WriteLine("         TESTE DA CLASSE CAMINHÃO");
+Console.WriteLine("==============================================");
 
-Carro carro = new Carro(
-    "Toyota",
-    "Corolla 2.0 Flex",
-    2021,
-    45000,
-    4
+Caminhao caminhao = new Caminhao(
+    marca: "Volvo",
+    modelo: "FH 540",
+    ano: 2022,
+    quilometragem: 150000,
+    capacidadeCargaToneladas: 25.0,
+    quantidadeEixos: 4
 );
 
+Console.WriteLine();
 Console.WriteLine("DADOS DO VEÍCULO");
-Console.WriteLine($"Marca: {carro.Marca}");
-Console.WriteLine($"Modelo: {carro.Modelo}");
-Console.WriteLine($"Ano: {carro.Ano}");
-Console.WriteLine($"Quilometragem: {carro.Quilometragem:N0} km");
-Console.WriteLine($"Quantidade de portas: {carro.QuantidadePortas}");
+Console.WriteLine($"Marca: {caminhao.Marca}");
+Console.WriteLine($"Modelo: {caminhao.Modelo}");
+Console.WriteLine($"Ano: {caminhao.Ano}");
+Console.WriteLine(
+    $"Quilometragem: {caminhao.Quilometragem:N0} km"
+);
+Console.WriteLine(
+    $"Quantidade de eixos: {caminhao.QuantidadeEixos}"
+);
+Console.WriteLine(
+    $"Capacidade de carga: " +
+    $"{caminhao.CapacidadeCargaToneladas:N1} toneladas"
+);
 
 Console.WriteLine();
 Console.WriteLine("CHECKLIST OBRIGATÓRIO");
 
-List<string> checklist = carro.ObterChecklistObrigatorio();
+List<string> checklistCaminhao =
+    caminhao.ObterChecklistObrigatorio();
 
-foreach (string item in checklist)
+foreach (string item in checklistCaminhao)
 {
     Console.WriteLine($"- {item}");
 }

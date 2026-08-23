@@ -1,6 +1,6 @@
 namespace AutoCheck.ConsoleApp.Models;
 
-public abstract class Moto : Veiculo
+public  class Moto : Veiculo
 {
     public int Cilindradas { get; set; }
     public Moto(
