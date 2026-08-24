@@ -1,4 +1,5 @@
 ﻿using AutoCheck.ConsoleApp.Models;
+using AutoCheck.ConsoleApp.Services;
 
 Console.WriteLine();
 Console.WriteLine("==============================================");
@@ -12,6 +13,36 @@ Caminhao caminhao = new Caminhao(
     quilometragem: 150000,
     capacidadeCargaToneladas: 25.0,
     quantidadeEixos: 4
+    
+);
+caminhao.AdicionarItemVistoriado(
+    "Nível de Óleo do Motor",
+    "Bom"
+);
+
+caminhao.AdicionarItemVistoriado(
+    "Bateria e Sistema Elétrico",
+    "Bom"
+);
+
+caminhao.AdicionarItemVistoriado(
+    "Documentação Regularizada",
+    "Regular"
+);
+
+caminhao.AdicionarItemVistoriado(
+    "Sistema de Freios",
+    "Bom"
+);
+
+caminhao.AdicionarItemVistoriado(
+    "Pneus em bom estado",
+    "Regular"
+);
+
+caminhao.AdicionarItemVistoriado(
+    "Sistema de Iluminação",
+    "Ruim"
 );
 
 Console.WriteLine();
@@ -40,3 +71,7 @@ foreach (string item in checklistCaminhao)
 {
     Console.WriteLine($"- {item}");
 }
+
+MotorVistoria motor = new MotorVistoria();
+
+motor.ExibirRelatorio(caminhao);
