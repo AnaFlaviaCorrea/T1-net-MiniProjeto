@@ -23,9 +23,9 @@ public class Caminhao : Veiculo
         List<string> checklistCaminhao =
             base.ObterChecklistObrigatorio();
 
-        checklistCaminhao.Add("Sistema de Freios");
-        checklistCaminhao.Add("Pneus em bom estado");
-        checklistCaminhao.Add("Sistema de Iluminação");
+        checklistCaminhao.Add("Funcionamento do Tacógrafo");
+        checklistCaminhao.Add("Trava e Lona da Caçamba");
+        checklistCaminhao.Add("Sistema de Freios a Ar");
 
         return checklistCaminhao;
     }

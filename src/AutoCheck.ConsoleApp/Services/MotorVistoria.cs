@@ -71,6 +71,28 @@ public class MotorVistoria
             return "REPROVADO";
         }
     }
+    public string ObterAcaoCorporativa(Veiculo veiculo)
+    {
+        if (veiculo.VistoriaRealizada.Count == 0)
+        {
+            return "Nenhuma ação corporativa definida.";
+        }
+
+        double percentual = CalcularPercentual(veiculo);
+
+        if (percentual >= 90)
+        {
+            return "Liberado para compra ou revenda imediata.";
+        }
+        else if (percentual >= 60)
+        {
+            return "Exige negociação de desconto para cobrir os reparos necessários.";
+        }
+        else
+        {
+            return "Veículo recusado pela concessionária.";
+        }
+    }
     public string ObterRecomendacao(string nomeItem)
     {
         switch (nomeItem)
@@ -80,9 +102,6 @@ public class MotorVistoria
 
             case "Bateria e Sistema Elétrico":
                 return "Testar a bateria e revisar o sistema elétrico.";
-
-            case "Documentação Regularizada":
-                return "Regularizar a documentação do veículo.";
 
             case "Estepe e Macaco":
                 return "Calibrar o estepe e verificar o funcionamento do macaco.";
@@ -99,11 +118,23 @@ public class MotorVistoria
             case "Desgaste dos Pneus":
                 return "Verificar o desgaste e considerar a troca dos pneus.";
 
+            case "Pneus em bom estado":
+                return "Verificar a pressão e o desgaste dos pneus.";
+
             case "Funcionamento do Tacógrafo":
                 return "Revisar e regularizar o funcionamento do tacógrafo.";
 
             case "Sistema de Freios a Ar":
                 return "Realizar revisão imediata do sistema de freios a ar.";
+
+            case "Sistema de Freios":
+                return "Inspecionar discos, pastilhas, fluido e demais componentes do sistema de freios.";
+
+            case "Sistema de Iluminação":
+                return "Verificar faróis, lanternas, setas, lâmpadas e conexões elétricas.";
+
+            case "Trava e Lona da Caçamba":
+                return "Verificar a trava, a fixação e as condições da lona da caçamba.";
 
             default:
                 return "Encaminhar o item para avaliação técnica.";
@@ -113,76 +144,67 @@ public class MotorVistoria
     {
         Console.WriteLine();
         Console.WriteLine(
-            "RELATÓRIO DE MANUTENÇÃO E RECOMENDAÇÕES DA OFICINA"
+            "> RELATÓRIO DE MANUTENÇÃO E RECOMENDAÇÕES DA OFICINA:"
         );
 
         if (veiculo.VistoriaRealizada.Count == 0)
         {
             Console.WriteLine(
-                "A vistoria ainda não possui itens avaliados."
+                "  A vistoria ainda não possui itens avaliados."
             );
 
             return;
         }
+
         bool possuiItemRuim = false;
         bool possuiItemRegular = false;
-
-        Console.WriteLine();
-        Console.WriteLine(
-            "RELATÓRIO DE MANUTENÇÃO E RECOMENDAÇÕES DA OFICINA"
-        );
-
-        Console.WriteLine();
-        Console.WriteLine(
-            "ITENS CRÍTICOS / REPROVADOS (AÇÃO IMEDIATA):"
-        );
 
         foreach (ItemVistoria item in veiculo.VistoriaRealizada)
         {
             if (item.Status == "Ruim")
             {
-                possuiItemRuim = true;
+                if (!possuiItemRuim)
+                {
+                    Console.WriteLine(
+                        "  🔴 ITENS CRÍTICOS / REPROVADOS " +
+                        "(AÇÃO IMEDIATA):"
+                    );
+
+                    possuiItemRuim = true;
+                }
 
                 Console.WriteLine(
-                    $"- {item.Nome}: " +
+                    $"     - {item.Nome}: " +
                     $"{ObterRecomendacao(item.Nome)}"
                 );
             }
         }
-
-        if (!possuiItemRuim)
-        {
-            Console.WriteLine("- Nenhum item crítico.");
-        }
-
-        Console.WriteLine();
-        Console.WriteLine(
-            "ITENS DE ATENÇÃO (REVISÃO PREVENTIVA):"
-        );
 
         foreach (ItemVistoria item in veiculo.VistoriaRealizada)
         {
             if (item.Status == "Regular")
             {
-                possuiItemRegular = true;
+                if (!possuiItemRegular)
+                {
+                    Console.WriteLine(
+                        "  🟡 ITENS DE ATENÇÃO " +
+                        "(REVISÃO PREVENTIVA):"
+                    );
+
+                    possuiItemRegular = true;
+                }
 
                 Console.WriteLine(
-                    $"- {item.Nome}: " +
+                    $"     - {item.Nome}: " +
                     $"{ObterRecomendacao(item.Nome)}"
                 );
             }
         }
 
-        if (!possuiItemRegular)
-        {
-            Console.WriteLine("- Nenhum item de atenção.");
-        }
-
         if (!possuiItemRuim && !possuiItemRegular)
         {
-            Console.WriteLine();
             Console.WriteLine(
-                "Nenhuma pendência mecânica identificada. " +
+                "  🟢 Nenhuma pendência mecânica identificada. " +
                 "Veículo liberado para operação!"
             );
         }
@@ -202,66 +224,72 @@ public class MotorVistoria
             return 0;
         }
     }
-    public void ExibirRelatorio(Veiculo veiculo)
+    public void ExibirRelatorio(
+    Veiculo veiculo,
+    int numeroAtual,
+    int totalVistorias)
     {
+        Console.WriteLine();
         Console.WriteLine(
-            "============================================================"
+            $"[{numeroAtual}/{totalVistorias}] PROCESSANDO VISTORIA"
+        );
+        Console.WriteLine(
+            "-------------------------------------------------------------------"
         );
 
-        Console.WriteLine("DADOS DO VEÍCULO:");
+        Console.WriteLine("> DADOS DO VEÍCULO:");
 
         if (veiculo is Carro carro)
         {
-            Console.WriteLine("- Tipo: Carro");
+            Console.WriteLine("  - Tipo: Carro");
             Console.WriteLine(
-                $"- Marca e modelo: {carro.Marca} {carro.Modelo}"
+                $"  - Modelo: {carro.Marca} {carro.Modelo}"
             );
             Console.WriteLine(
-                $"- Ano: {carro.Ano} | " +
+                $"  - Ano: {carro.Ano} | " +
                 $"Quilometragem: {carro.Quilometragem:N0} km"
             );
             Console.WriteLine(
-                $"- Quantidade de portas: {carro.QuantidadePortas}"
+                $"  - Atributo específico: " +
+                $"{carro.QuantidadePortas} portas"
             );
         }
         else if (veiculo is Moto moto)
         {
-            Console.WriteLine("- Tipo: Moto");
+            Console.WriteLine("  - Tipo: Moto");
             Console.WriteLine(
-                $"- Marca e modelo: {moto.Marca} {moto.Modelo}"
+                $"  - Modelo: {moto.Marca} {moto.Modelo}"
             );
             Console.WriteLine(
-                $"- Ano: {moto.Ano} | " +
+                $"  - Ano: {moto.Ano} | " +
                 $"Quilometragem: {moto.Quilometragem:N0} km"
             );
             Console.WriteLine(
-                $"- Cilindradas: {moto.Cilindradas} cc"
+                $"  - Atributo específico: " +
+                $"{moto.Cilindradas} cilindradas"
             );
         }
         else if (veiculo is Caminhao caminhao)
         {
-            Console.WriteLine("- Tipo: Caminhão");
+            Console.WriteLine("  - Tipo: Caminhão");
             Console.WriteLine(
-                $"- Marca e modelo: " +
-                $"{caminhao.Marca} {caminhao.Modelo}"
+                $"  - Modelo: {caminhao.Marca} {caminhao.Modelo}"
             );
             Console.WriteLine(
-                $"- Ano: {caminhao.Ano} | " +
+                $"  - Ano: {caminhao.Ano} | " +
                 $"Quilometragem: {caminhao.Quilometragem:N0} km"
             );
             Console.WriteLine(
-                $"- Quantidade de eixos: " +
-                $"{caminhao.QuantidadeEixos}"
-            );
-            Console.WriteLine(
-                $"- Capacidade de carga: " +
+                $"  - Atributo específico: " +
+                $"{caminhao.QuantidadeEixos} eixos | " +
+                $"Cap. de carga: " +
                 $"{caminhao.CapacidadeCargaToneladas:N1} toneladas"
             );
         }
 
         Console.WriteLine();
         Console.WriteLine(
-            $"ITENS INSPECIONADOS " +
+            $"> AVALIAÇÃO DOS ITENS INSPECIONADOS " +
             $"({veiculo.VistoriaRealizada.Count} ITENS):"
         );
 
@@ -275,22 +303,26 @@ public class MotorVistoria
             }
             else if (item.Status == "Regular")
             {
-                simbolo = "[!]";
+                simbolo = "[ ! ]";
             }
             else
             {
-                simbolo = "[X]";
+                simbolo = "[ X ]";
             }
 
             int pontos = ObterPontuacaoItem(item);
 
+            string nomeFormatado =
+                item.Nome.PadRight(38, '-');
+
             Console.WriteLine(
-                $"{simbolo} {item.Nome} - " +
+                $"  {simbolo} {nomeFormatado} " +
                 $"Status: {item.Status} ({pontos} pts)"
             );
         }
 
-        int pontuacaoObtida = CalcularPontuacao(veiculo);
+        int pontuacaoObtida =
+            CalcularPontuacao(veiculo);
 
         int pontuacaoMaxima =
             CalcularPontuacaoMaxima(veiculo);
@@ -301,29 +333,36 @@ public class MotorVistoria
         string classificacao =
             ObterClassificacao(veiculo);
 
+        string acaoCorporativa =
+            ObterAcaoCorporativa(veiculo);
+
         Console.WriteLine();
-        Console.WriteLine("RESUMO DA PONTUAÇÃO:");
+        Console.WriteLine("> RESUMO DA PONTUAÇÃO:");
 
         Console.WriteLine(
-            $"- Pontuação atingida: {pontuacaoObtida} " +
+            $"  - Pontuação atingida: {pontuacaoObtida} " +
             $"de {pontuacaoMaxima} pontos possíveis"
         );
 
         Console.WriteLine(
-            $"- Percentual de aprovação: {percentual:F1}%"
+            $"  - Percentual de aprovação: {percentual:F1}%"
         );
 
         Console.WriteLine(
-            $"- Classificação final: [ {classificacao} ]"
+            $"  - Classificação final: [ {classificacao} ]"
+        );
+
+        Console.WriteLine(
+            $"  - Decisão corporativa: {acaoCorporativa}"
         );
 
         ExibirRecomendacoes(veiculo);
 
+        Console.WriteLine();
         Console.WriteLine(
-            "============================================================"
+            "-------------------------------------------------------------------"
         );
     }
 }
-
 
 

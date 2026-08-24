@@ -34,8 +34,7 @@ public abstract class Veiculo
 
         checklistGenerico.Add("Nível de Óleo do Motor");
         checklistGenerico.Add("Bateria e Sistema Elétrico");
-        checklistGenerico.Add("Documentação Regularizada");
-
+      
         return checklistGenerico;
     }
 }

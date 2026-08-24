@@ -1,6 +1,6 @@
 namespace AutoCheck.ConsoleApp.Models;
 
-public  class Moto : Veiculo
+public class Moto : Veiculo
 {
     public int Cilindradas { get; set; }
     public Moto(
@@ -12,7 +12,7 @@ public  class Moto : Veiculo
 
         : base(marca, modelo, ano, quilometragem)
     {
-        
+
     }
 
     public override List<string> ObterChecklistObrigatorio()
@@ -20,9 +20,10 @@ public  class Moto : Veiculo
         List<string> checklistMoto =
             base.ObterChecklistObrigatorio();
 
-        checklistMoto.Add("Capacete em bom estado");
-        checklistMoto.Add("Luvas de proteção");
-        checklistMoto.Add("Jaqueta ou colete refletivo");
+        checklistMoto.Add("Estado da Corrente");
+        checklistMoto.Add("Desgaste dos Pneus");
+        checklistMoto.Add("Sistema de Freios");
+
 
         return checklistMoto;
     }

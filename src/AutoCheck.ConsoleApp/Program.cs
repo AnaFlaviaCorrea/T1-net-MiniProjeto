@@ -54,19 +54,36 @@ while (sistemaEmExecucao)
             else
             {
                 Console.WriteLine(
-                    $"TOTAL DE VISTORIAS: {vistorias.Count}"
+                    "==================================================================="
+                );
+                Console.WriteLine(
+                    "              AUTOCHECK .NET - MOTOR DE VISTORIA"
+                );
+                Console.WriteLine(
+                    "==================================================================="
                 );
 
                 for (int i = 0; i < vistorias.Count; i++)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine(
-                        $"VISTORIA {i + 1} DE {vistorias.Count}"
+                    motor.ExibirRelatorio(
+                        vistorias[i],
+                        i + 1,
+                        vistorias.Count
                     );
-
-                    motor.ExibirRelatorio(vistorias[i]);
                 }
+
+                Console.WriteLine(
+                    "==================================================================="
+                );
+                Console.WriteLine(
+                    "              FIM DO PROCESSAMENTO DE VISTORIAS"
+                );
+                Console.WriteLine(
+                    "==================================================================="
+                );
             }
+
+
             break;
 
         case "0":
