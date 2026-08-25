@@ -312,24 +312,7 @@ Composição: cada Veiculo possui uma List<ItemVistoria>, pois uma vistoria é f
 O AutoCheck é uma aplicação Console local e, nesta versão, não utiliza arquitetura cliente-servidor. A entrada de dados, o processamento, o armazenamento temporário e a exibição dos resultados acontecem no mesmo processo.
 
 O projeto separa as entidades, as regras de negócio e a navegação. Essa organização permite uma futura evolução para uma API no servidor e uma interface Web, desktop ou móvel como cliente.
-
-📁 Estrutura do projeto
-
-T1-net-MiniProjeto/
-├── README.md
-├── AutoCheck.slnx
-└── src/
-    └── AutoCheck.ConsoleApp/
-        ├── Models/
-        │   ├── Veiculo.cs
-        │   ├── Carro.cs
-        │   ├── Moto.cs
-        │   ├── Caminhao.cs
-        │   └── ItemVistoria.cs
-        ├── Services/
-        │   └── MotorVistoria.cs
-        ├── Program.cs
-        └── AutoCheck.ConsoleApp.csproj
+ 
 
 Models contém as entidades e suas características;
 
@@ -341,7 +324,7 @@ Program.cs contém o menu, a entrada de dados, a navegação e os testes manuais
 
 O vídeo demonstra o funcionamento do sistema, as principais partes do código, as validações realizadas e a organização do desenvolvimento com Git e branches.
 
-▶️ Assistir à apresentação do AutoCheck .NET
+▶️ Assistir à apresentação do AutoCheck .NET (https://youtu.be/wdzb0RGWHqQ)
 
 🤖 Uso de Inteligência Artificial
 
