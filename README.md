@@ -11,7 +11,9 @@ Sistema de Vistoria Veicular
 
 Aplicação Console para registrar, processar e classificar vistorias de carros, motos e caminhões.
 
-▶️ Assistir ao vídeo de apresentação
+▶️ Assistir ao vídeo de apresentação 
+https://drive.google.com/file/d/16OVB0piAMJjTv575IsZriEJMg4d9fHjP/view?usp=drive_link
+https://youtu.be/wdzb0RGWHqQ
 
 </div>
 
@@ -237,25 +239,15 @@ A opção 0 encerra o programa.
 
 Lógica de programação e tipos primitivos
 
-Tipo
-
 Utilização no projeto
 
-string
+string : Textos, nomes e status dos itens.
 
-Textos, nomes e status dos itens.
+int: Ano, portas, cilindradas, eixos e pontuações.
 
-int
+double: Quilometragem, capacidade de carga e percentual.
 
-Ano, portas, cilindradas, eixos e pontuações.
-
-double
-
-Quilometragem, capacidade de carga e percentual.
-
-bool
-
-Controle de condições e execução do menu.
+bool: Controle de condições e execução do menu.
 
 Coleções com List<T>
 
@@ -266,10 +258,6 @@ List<ItemVistoria> armazena os itens avaliados de cada veículo;
 List<string> contém os nomes do checklist obrigatório.
 
 Estruturas de controle
-
-Estrutura
-
-Aplicação
 
 while
 
